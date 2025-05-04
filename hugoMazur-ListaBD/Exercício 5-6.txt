@@ -1,0 +1,57 @@
+5- 
+Esquema de relação: esquema de relação é formado pelo nome da relação
+junto aos atributos (colunas) desta relação.
+Domínio: domínio é o conjunto de valores que satisfazem o atributo.
+Instância de relação: instância de relação é o que satisfaz o domínio na
+relação.
+Cardinalidade da relação: número de tuplas (linhas) em uma relação.
+Grau (aridade) da relação: número de atributos (colunas) em uma relação.
+Chave primária: chave primária é um atributo único de uma tupla.
+Chave estrangeira: chave estrangeira define que o valor de um atributo 
+de uma tupla procure um valor de um atributo em outra tupla, podendo ser
+em outra relação ou não.
+Violação de integridade: uma instância de relação que não satisfaz as
+restrições de integridade.
+
+6- 
+a) 
+INSERT INTO FUNCIONARIO(Pnome, Minicial, Unome, Cpf, Datanasc, Endereco, Sexo, Salario, Cpf_supervisor, Dnr)
+VALUES ('Roberto', 'F', 'Santos', '94377554355' , '21-06-1972', 'Rua Benjamin, 34, Santo André, SP', M, 58.000, '88866555576',1)
+b)
+INSERT INTO PROJETO(Projnome, Projnumero, Projlocal, Dnum)
+VALUES ('ProdutoA', 4, 'Santo André', 2)
+c)
+INSERT INTO DEPARTAMENTO(Dnome, Dnumero, Cpf_gerente, Data_inicio_gerente)
+VALUES ('Producao', 4, '94377554355', '01-10-2007')
+Viola o domínio Dnumero, pois é uma chave primária e já existe uma tupla com esse valor.
+d) 
+INSERT INTO TRABALHA_EM(Fcpf, Pnr, Horas)
+VALUES ('67767898944', NULL, '40,0')
+Creio que o valor ser nulo viola o domínio Pnr.
+e)
+INSERT INTO DEPENDENTE(Fcpf, Nome_dependente, Sexo, Datanasc, Parentesco)
+VALUES ('45345345376', 'João', 'M', '12-12-1990', 'marido')
+f) 
+DELETE FROM TRABALHA_EM
+WHERE Fcpf = '33344555587'
+g)
+DELETE FROM FUNCIONARIO
+WHERE Cpf = '98765432168'
+h)
+DELETE FROM PROJETO
+WHERE Projnome = 'ProdutoX'
+i)
+UPDATE DEPARTAMENTO
+SET
+   Cpf_gerente = '12345678966'
+   Data_inicio_gerente = '01-10-2007'
+WHERE Dnumero = 5
+j)
+UPDATE FUNCIONARIO
+SET Cpf_supervisor = '94377554355'
+WHERE Cpf_supervisor = '99988777767'
+Em nenhuma tupla o atributo Cpf_supervisor tem esse valor.
+k)
+UPDATE TRABALHA_EM
+SET Horas = '5,0'
+WHERE Fcpf = '99988777767' AND Pnr = 10   

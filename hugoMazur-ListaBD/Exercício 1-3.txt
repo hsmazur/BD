@@ -1,0 +1,14 @@
+1- A relação é que Banco de Dados é um sistema para armazenar e
+controlar informações, enquanto Sistemas Gerenciadores de Banco de Dados
+(SGBDs) são programas que permitem criar, acessar e gerenciar BDs. 
+Sistemas de Banco de Dados envolvem tanto Banco de Dados como SGBDs.
+
+2- Um sistema de banco de dados permite um maior controle e segurança 
+sobre os dados do que arquivos de sistema operacional, aumentando a 
+praticidade. Faria sentido não utilizar um sistema de banco de dados
+em caso de poucas necessidades de armazenamento ou em baixa quantidade
+de dados.
+
+3- Vantagens como a padronização, já que SQL é uma linguagem padrão, 
+facilidade de uso, já que é uma linguagem fácil de aprender e utilizar
+e a capacidade de reutilização de consultas.
