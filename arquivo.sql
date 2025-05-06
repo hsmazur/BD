@@ -155,7 +155,6 @@ INSERT INTO comentarios (id, usuario_id, post_id, texto, datapostagem) VALUES
 (20, 3, 10, 'Eu estou 1500 anos na luta e você falando em descansar?', '2025-03-26 11:14');
 
 INSERT INTO likes (id, usuario_id, post_id) VALUES
-INSERT INTO likes (id, usuario_id, post_id) VALUES
 (1, 1, 5),
 (2, 4, 5),
 (3, 8, 5),
