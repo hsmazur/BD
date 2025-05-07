@@ -1,0 +1,4 @@
+Guilherme Castilho Davanço 2667258. Criou as tabelas e fez as consultas 1) a 5);
+Hugo Silva Mazur 2667274. Populou as tabelas e fez as consultas 6) a 9);
+Renan de Souza Gimenes Barbosa 2667444. Fez as consultas 10) a 13);
+Renan Machado Bonfim Ferreira 2675315. Populou as tabelas e fez as consultas 14) a 17);
