@@ -1,0 +1,125 @@
+DROP TABLE IF EXISTS Filmes;
+
+CREATE TABLE Filmes (
+  ID SERIAL PRIMARY KEY,
+  Nome VARCHAR(100),
+  Diretor VARCHAR(100),
+  Genero VARCHAR(50),
+  Estudio VARCHAR(100),
+  DataDeLancamento DATE,
+  Bilheteria DECIMAL(10, 2),
+  NotaIMDB DECIMAL(3, 1)
+);
+
+INSERT INTO Filmes (Nome, Diretor, Genero, Estudio, DataDeLancamento, Bilheteria, NotaIMDB) VALUES
+  ('O Rei Leão', 'Roger Allers, Rob Minkoff', 'Animação', 'Walt Disney Pictures', '1994-06-15', 968.5, 8.5),
+  ('Titanic', 'James Cameron', 'Drama', '20th Century Fox', '1997-11-01', 2207.9, 7.8),
+  ('Harry Potter e a Pedra Filosofal', 'Chris Columbus', 'Fantasia', 'Warner Bros.', '2001-11-16', 974.8, 7.6),
+  ('Senhor dos Anéis: O Retorno do Rei', 'Peter Jackson', 'Fantasia', 'New Line Cinema', '2003-12-17', 1141.4, 8.9),
+  ('Piratas do Caribe: A Maldição do Pérola Negra', 'Gore Verbinski', 'Ação', 'Walt Disney Pictures', '2003-09-12', 654.3, 8.0),
+  ('Os Incríveis', 'Brad Bird', 'Animação', 'Pixar Animation Studios', '2004-11-05', 633.0, 8.0),
+  ('Batman: O Cavaleiro das Trevas', 'Christopher Nolan', 'Ação', 'Warner Bros.', '2008-07-18', 1004.9, 9.0),
+  ('Avatar', 'James Cameron', 'Ficção Científica', '20th Century Fox', '2009-12-18', 2787.9, 7.8),
+  ('Toy Story 3', 'Lee Unkrich', 'Animação', 'Pixar Animation Studios', '2010-06-18', 1063.2, 8.3),
+  ('Vingadores: Guerra Infinita', 'Anthony Russo, Joe Russo', 'Ação', 'Marvel Studios', '2018-04-27', 2048.0, 8.4),
+  ('Frozen: Uma Aventura Congelante', 'Chris Buck, Jennifer Lee', 'Animação', 'Walt Disney Pictures', '2013-11-27', 1450.0, 7.4),
+  ('Jurassic World', 'Colin Trevorrow', 'Aventura', 'Universal Pictures', '2015-06-12', 1670.4, 7.0),
+  ('Star Wars: O Despertar da Força', 'J.J. Abrams', 'Ficção Científica', 'Lucasfilm Ltd.', '2015-12-18', 2068.2, 7.9),
+  ('Os Vingadores', 'Joss Whedon', 'Ação', 'Marvel Studios', '2012-04-11', 1518.8, 8.0),
+  ('Mad Max: Estrada da Fúria', 'George Miller', 'Ação', 'Village Roadshow Pictures', '2015-05-14', 374.7, 8.1),
+  ('Jurassic Park', 'Steven Spielberg', 'Aventura', 'Universal Pictures', '1993-06-11', 1030.9, 8.1),
+  ('O Rei Leão (2019)', 'Jon Favreau', 'Aventura', 'Walt Disney Pictures', '2019-07-19', 1656.0, 6.9),
+  ('Pantera Negra', 'Ryan Coogler', 'Ação', 'Marvel Studios', '2018-02-16', 1346.9, 7.3),
+  ('Toy Story 4', 'Josh Cooley', 'Animação', 'Pixar Animation Studios', '2019-06-21', 1073.4, 7.7),
+  ('Harry Potter e as Relíquias da Morte - Parte 2', 'David Yates', 'Fantasia', 'Warner Bros.', '2011-07-15', 1341.5, 8.1),
+  ('O Senhor dos Anéis: As Duas Torres', 'Peter Jackson', 'Fantasia', 'New Line Cinema', '2002-12-18', 947.0, 8.7),
+  ('Os Incríveis 2', 'Brad Bird', 'Animação', 'Pixar Animation Studios', '2018-06-15', 1241.5, 7.6),
+  ('Procurando Dory', 'Andrew Stanton', 'Animação', 'Pixar Animation Studios', '2016-06-17', 1028.6, 7.3),
+  ('Os Vingadores: Era de Ultron', 'Joss Whedon', 'Ação', 'Marvel Studios', '2015-04-23', 1405.4, 7.3),
+  ('Capitão América: Guerra Civil', 'Anthony Russo, Joe Russo', 'Ação', 'Marvel Studios', '2016-04-28', 1153.3, 7.8),
+  ('Frozen 2', 'Chris Buck, Jennifer Lee', 'Animação', 'Walt Disney Pictures', '2019-11-22', 1450.0, 7.0),
+  ('Moana', 'Ron Clements, John Musker', 'Animação', 'Walt Disney Pictures', '2016-11-23', 643.3, 7.6),
+  ('Homem de Ferro 3', 'Shane Black', 'Ação', 'Marvel Studios', '2013-04-24', 1214.8, 7.2);
+
+--1)Assumindo que cada diretor de filme recebeu 2% do total da bilheteria para cada um do
+--seus filmes. Mostre quanto cada diretor recebeu por filme.
+SELECT Diretor, Bilheteria * 0.02 AS ValorRecebido
+FROM Filmes;
+
+--2)Listar todos os filmes cujo diretor possui o sobrenome "Nolan". Use a função split_part.
+SELECT Nome
+FROM Filmes
+WHERE split_part(diretor, ' ', 2) = 'Nolan';
+
+--3)Listar todos os filmes cujo nome termina com o sufixo “man”.
+SELECT Nome
+FROM Filmes
+WHERE Nome LIKE '%man%';
+
+--4)Listar todos os filmes cujo nome possui mais de 10 caracteres.
+SELECT Nome
+FROM Filmes
+WHERE char_length(Nome) > 10;
+
+--5)Retorne todos os filmes da tabela "Filmes", exibindo o nome do filme concatenado com
+--o nome do diretor em letra maiúscula.
+SELECT Nome || ' ' || UPPER (Diretor) AS FilmeEDiretor
+FROM Filmes;
+
+--6)Listar todos os filmes lançados no ano de 2018.
+SELECT Nome
+FROM Filmes
+WHERE DATE_PART('year', DataDeLancamento) = 2018;
+
+--7)Listar os filmes lançados nos últimos 5 anos.
+SELECT Nome
+FROM Filmes
+WHERE DATE_PART('year', NOW()) - DATE_PART('year', DataDeLancamento) <= 5;
+
+--8) Listar os filmes lançados antes de 1º de janeiro de 2000, ordenados por data de lançamento
+SELECT Nome
+FROM Filmes
+wHERE DATE_PART('year', DataDeLancamento) < 2000
+ORDER BY DataDeLancamento ASC;
+
+--9) Calcular a média das notas no IMDB de todos os filmes.
+SELECT AVG(NotaIMDB) AS mediaTotal
+FROM Filmes;
+
+--10)Calcular a soma total da bilheteria de todos os filmes.
+SELECT SUM(Bilheteria) AS somaTotal
+FROM Filmes;
+
+--11)Contar o número de filmes lançados por mês no ano de 2015.
+SELECT extract(MONTH FROM DataDeLancamento) AS mes, COUNT(*) AS NumeroFilmes
+FROM Filmes
+WHERE extract(YEAR FROM DataDeLancamento) = 2015
+GROUP BY mes
+ORDER BY mes;
+
+--12)Calcular a média da bilheteria dos filmes lançados nos últimos cinco anos.
+SELECT AVG(NotaIMDB) AS mediadosFilmes
+FROM Filmes
+WHERE DATE_PART('year', NOW()) - DATE_PART('year', DataDeLancamento) <= 5;
+
+--13)Retorne os gêneros que têm mais de 5 filmes e o número de filmes em cada um desses gêneros.
+SELECT Genero, COUNT(*) AS totalDeFilmes
+FROM Filmes
+GROUP BY Genero
+HAVING COUNT(*) > 5;
+
+--14)Retorne os diretores que têm filmes com uma média de notas no IMDB maior que 7.5,
+--juntamente com a média das notas para cada diretor.
+
+SELECT Diretor, AVG(NotaIMDB) AS mediasDasNotas
+FROM Filmes
+GROUP BY Diretor
+HAVING AVG(NotaIMDB) > 7.5;
+
+
+
+
+
+
+
+
